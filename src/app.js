@@ -3,8 +3,8 @@ const cors = require('cors')
 const { StatusCodes } = require('http-status-codes')
 
 const { ApiError } = require('./utils/base.error')
-
 const { errorHandler } = require('./middlewares/errorHandler');
+const v1Router = require('./routes')
 
 const app = express();
 
@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.options("*", cors());
 
+app.use('/api', v1Router);
 app.get('/api/status', (req, res) => res.status(200).json({ message: "Server is live" }));
 
 app.use((req, res, next) => {

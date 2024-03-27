@@ -1,5 +1,5 @@
-import { StatusCodes } from "http-status-codes";
-import { ApiError } from "./utils/base.error";
+const { StatusCodes } = require("http-status-codes");
+const { ApiError } = require("../utils/base.error");
 
 class CrudRepository {
     constructor(model) {
@@ -54,4 +54,4 @@ class CrudRepository {
 
 }
 
-export default CrudRepository;
+module.exports = CrudRepository;
