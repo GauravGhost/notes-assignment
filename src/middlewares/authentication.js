@@ -13,7 +13,7 @@ const verifyAuth = async (token) => {
 
 
         const payload = jwt.verify(token, serverConfig.JWT_SECRET);
-        console.log("fdfd", payload);
+    
         if (!payload) {
             throw new ApiError(StatusCodes.BAD_REQUEST, "Payload not found");
         }

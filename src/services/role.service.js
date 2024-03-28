@@ -1,3 +1,4 @@
+const { StatusCodes } = require('http-status-codes');
 const RoleRepository = require('../repositories/role.repository')
 
 const roleRepository = new RoleRepository();
@@ -10,6 +11,9 @@ class RoleService {
 
     async getRoleById(id) {
         const role = await roleRepository.get(id);
+        if(!role){
+            throw new ApiError(StatusCodes.NOT_FOUND, "Role Not Found!")
+        }
         return role;
     }
 }

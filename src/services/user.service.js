@@ -11,6 +11,9 @@ class UserService {
 
     async getUserById(id) {
         let user = await userRepository.get(id);
+        if(!user){
+            throw new ApiError(StatusCodes.NOT_FOUND, "User not Found!")
+        }
         user = await user.populate('role');
         return user;
     }
@@ -19,11 +22,11 @@ class UserService {
 
         const user = await userRepository.getByUsername(data.username);
         if (!user) {
-            throw new ApiError(StatusCodes.NOT_FOUND, "user or password is invalid");
+            throw new ApiError(StatusCodes.BAD_REQUEST, "user or password is invalid");
         }
 
         if (await !user.comparePassword(data.password)) {
-            throw new ApiError(StatusCodes.NOT_FOUND, "user or password is invalid");
+            throw new ApiError(StatusCodes.BAD_REQUEST, "user or password is invalid");
         }
         return user;
     }
