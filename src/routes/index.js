@@ -23,6 +23,7 @@ router.get('/v1/notes/:id', NoteController.getNoteById);
 router.post('/v1/notes', NoteController.createNote);
 router.put('/v1/notes/:id', NoteController.updateNote);
 router.post('/v1/notes/:id/share', NoteController.shareNoteById);
+router.get('/v1/search', NoteController.searchByQuery);
 router.post('/v1/notes/:id/share/:userId', NoteController.shareNoteByUserId);
 
 

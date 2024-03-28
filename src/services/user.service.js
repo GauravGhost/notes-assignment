@@ -1,6 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
 const UserRepository = require('../repositories/user.repository')
 const { ApiError } = require('../utils/base.error')
+
 const userRepository = new UserRepository();
 
 class UserService {
@@ -11,7 +12,7 @@ class UserService {
 
     async getUserById(id) {
         let user = await userRepository.get(id);
-        if(!user){
+        if (!user) {
             throw new ApiError(StatusCodes.NOT_FOUND, "User not Found!")
         }
         user = await user.populate('role');

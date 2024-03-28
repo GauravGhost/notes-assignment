@@ -10,6 +10,12 @@ const getNoteById = catchAsync(async (req, res) => {
     return res.status(StatusCodes.OK).json(successResponse);
 })
 
+const searchByQuery = catchAsync(async (req, res) => {
+    const notes = await noteService.searchNotesByKeyword(req.query.q);
+    successResponse.data = notes;
+    return res.status(StatusCodes.OK).json(successResponse);
+})
+
 const createNote = catchAsync(async (req, res) => {
     const note = await noteService.createNote(req.body);
     successResponse.data = note;
@@ -46,5 +52,6 @@ module.exports = {
     deleteNote,
     updateNote,
     shareNoteById,
-    shareNoteByUserId
+    shareNoteByUserId,
+    searchByQuery
 }

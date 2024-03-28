@@ -13,6 +13,11 @@ class NoteService {
         return note;
     }
 
+    async searchNotesByKeyword(query){
+        const notes = await noteRepository.getAllByQuery(query);
+        return notes;
+    }
+
     async createNote(data) {
         const note = await noteRepository.create(data)
         return note;
