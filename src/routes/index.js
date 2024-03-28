@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-const {RoleController} = require('../controllers')
+const {RoleController, UserController} = require('../controllers')
 /**
  * @description Role Router
  */
@@ -10,7 +10,8 @@ router.post('/v1/roles', RoleController.createRole);
 /**
  * @description User Router
  */
-
+router.post('/v1/users/login', UserController.loginUser)
+router.post('/v1/users', UserController.createUser)
 
 /**
  * @description Note Router

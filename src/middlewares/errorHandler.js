@@ -4,7 +4,9 @@ const { errorResponse } = require('../utils/errorResponse');
 // Send response on errors
 const errorHandler = (err, req, res, next) => {
     let { statusCode, message } = err;
-
+    if (!statusCode) {
+        statusCode = 500
+    }
     res.locals.errorMessage = err.message;
 
     errorResponse.error = message;

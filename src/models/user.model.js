@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         unique: true,
     },
+    password: {
+        type: String,
+        required: true
+    },
 
     role: {
         type: mongoose.Schema.Types.ObjectId,

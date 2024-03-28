@@ -1,5 +1,6 @@
+const { StatusCodes } = require('http-status-codes');
 const UserRepository = require('../repositories/user.repository')
-
+const {ApiError} = require('../utils/base.error')
 const userRepository = new UserRepository();
 
 class UserService {
@@ -21,7 +22,7 @@ class UserService {
         }
 
         if (await !user.comparePassword(data.password)) {
-            throw new ApiError(StatusCodes.NOT_FOUND, "password is invalid");
+            throw new ApiError(StatusCodes.NOT_FOUND, "user or password is invalid");
         }
         return user;
     }
