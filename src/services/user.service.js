@@ -1,6 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const UserRepository = require('../repositories/user.repository')
-const {ApiError} = require('../utils/base.error')
+const { ApiError } = require('../utils/base.error')
 const userRepository = new UserRepository();
 
 class UserService {
@@ -10,7 +10,8 @@ class UserService {
     }
 
     async getUserById(id) {
-        const user = await userRepository.get(id);
+        let user = await userRepository.get(id);
+        user = await user.populate('role');
         return user;
     }
 

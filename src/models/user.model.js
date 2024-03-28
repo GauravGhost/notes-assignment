@@ -49,7 +49,7 @@ userSchema.methods.comparePassword = function compare(password) {
 }
 
 userSchema.methods.genJWT = function generate() {
-    const token = jwt.sign({ id: this._id, email: this.username }, JWT_SECRET, {
+    const token = jwt.sign({ id: this._id, username: this.username}, JWT_SECRET, {
         expiresIn: '1h'
     })
     return token;
