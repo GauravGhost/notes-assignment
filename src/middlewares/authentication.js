@@ -33,7 +33,7 @@ const verifyAuth = async (token) => {
 }
 
 
-const checkAuth = catchAsync(async (req, res, next) => {
+const authentication = catchAsync(async (req, res, next) => {
     const { authorization } = req.headers;
     if (!authorization && !authorization?.startsWith("Bearer")) {
         throw new ApiError(StatusCodes.BAD_REQUEST, "Token not found")
@@ -46,5 +46,5 @@ const checkAuth = catchAsync(async (req, res, next) => {
 })
 
 module.exports = {
-    checkAuth
+    authentication
 }

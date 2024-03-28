@@ -1,11 +1,13 @@
 const express = require('express')
 const router = express.Router();
 const {RoleController, UserController} = require('../controllers');
-const { checkAuth } = require('../middlewares/authentication');
+const { authentication } = require('../middlewares/authentication');
+const {authorization} = require('../middlewares/authorization');
+const { READ_ROLE } = require('../utils/permission.constant');
 /**
  * @description Role Router
  */
-router.get('/v1/roles/:id', checkAuth, RoleController.getRoleById);
+router.get('/v1/roles/:id', authentication, authorization(READ_ROLE), RoleController.getRoleById);
 router.post('/v1/roles', RoleController.createRole);
 
 /**
